@@ -59,6 +59,22 @@ public:
 
     bool solve() {
         // homework
-        return false;   // placeholder
+        int row;
+        int col;
+
+        if (!findEmptySpace(row, col)) {
+            return true;
+        }
+    }
+
+    bool findEmptySpace(int &row, int &col) {
+        for (row = 0; row < 9; row++) {
+            for (col = 0; col <9; col++) {
+                if(this->grid[row][col] == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 };
