@@ -65,7 +65,7 @@ TEST(sudoku, case0) {
     Sudoku sudoku(grid);
     ASSERT_TRUE(sudoku.solve());
 }
-/*
+
 TEST(sudoku, case1) {
     int grid[9][9] = {{3, 0, 6, 5, 0, 8, 4, 0, 0},
                       {5, 2, 0, 0, 0, 0, 0, 0, 0},
@@ -145,4 +145,3 @@ TEST(sudoku, case3) {
     sudoku.solve();
     ASSERT_TRUE(sudoku==answer);
 }
-*/

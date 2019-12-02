@@ -65,6 +65,18 @@ public:
         if (!findEmptySpace(row, col)) {
             return true;
         }
+
+        for (int num = 1; num <= 9; num++) {
+            if (isSafe(row, col, num)) {
+                this->grid[row][col] = num;
+
+                if (solve()) {
+                    return true;
+                }
+                grid[row][col] = 0;
+            }
+        }
+        return false;
     }
 
     bool findEmptySpace(int &row, int &col) {
@@ -75,6 +87,40 @@ public:
                 }
             }
         }
+        return false;
+    }
+
+    bool isSafe(int row, int col, int num) {
+        return !usedInRow(row, num) &&
+        !usedInCol(col, num) &&
+        !usedInBox(row - row % 3, col - col % 3, num) &&
+        this->grid[row][col] == 0;
+    }
+
+    bool usedInRow(int row, int num) {
+        for (int col = 0; col < 9; col++) {
+            if (this->grid[row][col] == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool usedInCol(int col, int num) {
+        for (int row = 0; row < 9; row++) {
+            if (this->grid[row][col] == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool usedInBox(int boxStartRow, int boxStartCol, int num)
+    {
+        for (int row = 0; row < 3; row++)
+            for (int col = 0; col < 3; col++)
+                if (this->grid[row + boxStartRow][col + boxStartCol] == num)
+                    return true;
         return false;
     }
 };
