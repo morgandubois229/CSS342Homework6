@@ -138,3 +138,48 @@ TEST(dict, removeEmpty) {
 
     ASSERT_FALSE(hashTable.remove(1));
 }
+
+TEST(dict, removeExistsNoCollision) {
+    // homework
+    ArrayDictionary<int, int> hashTable(3);
+
+    ASSERT_TRUE(hashTable.add(0, 103));
+    ASSERT_TRUE(hashTable.add(1, 105));
+    ASSERT_TRUE(hashTable.add(2, 206));
+
+    ASSERT_TRUE(hashTable.remove(1));
+}
+
+TEST(dict, removeDoesNotExistsNoCollision) {
+    // homework
+    ArrayDictionary<int, int> hashTable(3);
+
+    ASSERT_TRUE(hashTable.add(0, 103));
+    ASSERT_TRUE(hashTable.add(2, 206));
+
+    ASSERT_FALSE(hashTable.remove(1));
+}
+
+TEST(dict, removeExistsCollision) {
+    // homework
+    ArrayDictionary<int, int> hashTable(3);
+
+    ASSERT_TRUE(hashTable.add(0, 103));
+    ASSERT_TRUE(hashTable.add(1, 105));
+    ASSERT_TRUE(hashTable.add(2, 206));
+    ASSERT_TRUE(hashTable.add(4, 407));
+
+    ASSERT_TRUE(hashTable.remove(1));
+    ASSERT_FALSE(hashTable.remove(1));
+}
+
+TEST(dict, removeDoesNotExistsCollision) {
+    // homework
+    ArrayDictionary<int, int> hashTable(3);
+
+    ASSERT_TRUE(hashTable.add(0, 103));
+    ASSERT_TRUE(hashTable.add(1, 105));
+    ASSERT_TRUE(hashTable.add(4, 407));
+
+    ASSERT_FALSE(hashTable.remove(2));
+}
