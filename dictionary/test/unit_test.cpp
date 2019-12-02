@@ -132,7 +132,9 @@ TEST(dict, set5) {
     ASSERT_FALSE(hashTable.contain(8));
 }
 
-TEST(dict, remove) {
+TEST(dict, removeEmpty) {
     // homework
-    ASSERT_TRUE(false); // placeholder
+    ArrayDictionary<int, int> hashTable(3);
+
+    ASSERT_FALSE(hashTable.remove(1));
 }

@@ -154,6 +154,29 @@ public:
 
     bool remove(KeyType const &key) override {
         // homework
-        return false;
+        int hashedKey = hashFunc(key);
+        if (hashedKey < 0 || hashedKey > capacity) {
+            return false;
+        }
+
+        // there is no value at hashed key
+        if (entries[hashedKey] == nullptr) {
+            return false;
+        }
+
+        if (entries[hashedKey]->key == key) {
+            Entry<KeyType, ValueType> *ptr = entries[hashedKey];
+            removeList(ptr);
+            entries[hashedKey] = nullptr;
+            return true;
+        }
+    }
+
+    void removeList(Entry<KeyType, ValueType> *ptr) {
+            if (ptr == nullptr) {
+                return;
+            }
+            removeList(ptr->next);
+            delete ptr;
     }
 };
