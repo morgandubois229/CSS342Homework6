@@ -123,7 +123,28 @@ public:
     }
 
     bool contain(KeyType const &key) override {
-        // homework
+        int hashedKey = hashFunc(key);
+        if (hashedKey < 0 || hashedKey > capacity) {
+            return false;
+        }
+
+        // there is no value at hashed key
+        if (entries[hashedKey] == nullptr) {
+            return false;
+        }
+
+        if (entries[hashedKey]->key == key) {
+            return true;
+        }
+        Entry<KeyType, ValueType> *ptr = entries[hashedKey];
+        while (ptr != nullptr) {
+            // update value if key already exists
+            if (ptr->key == key) {
+                return true;
+            }
+
+            ptr = ptr->next;
+        }
         return false;
     }
 
